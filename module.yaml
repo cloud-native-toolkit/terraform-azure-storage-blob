@@ -2,10 +2,27 @@ name: azure-storage-blob
 type: terraform
 description: Module to provision storage-blob on azure
 tags:
-  - tools
-  - devops
+  - azure
+  - storage
 versions:
   - platforms: []
-    dependencies: []
-    variables: []
+    providers:
+      - name: azurerm
+        source: "hashicorp/azurerm"
+    dependencies:
+      - id: resource_group
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-azure-resource-group
+            version: ">= 1.0.0"
+      - id: sync
+        refs: []
+        interface: github.com/cloud-native-toolkit/automation-modules#sync
+        optional: true
+    variables:
+      - name: resource_group_name
+        moduleRef:
+          id: resource_group
+          output: name
+      - name: region
+        scope: global
 cloudProvider: azure
