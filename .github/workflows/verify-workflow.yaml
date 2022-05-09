@@ -23,7 +23,7 @@ jobs:
     strategy:
       matrix:
         testcase:
-          - azure-vpc
+          - azure_vpc
         enabled:
           - true
       fail-fast: false
