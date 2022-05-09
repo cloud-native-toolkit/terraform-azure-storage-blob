@@ -1,4 +1,3 @@
-# Resource Group Variables
 variable "resource_group_name" {
   type        = string
   description = "Resource group to be created."
@@ -9,18 +8,22 @@ variable "region" {
   description = "Region/location to deploy into."
 }
 
-variable "name_prefix" {
+variable "subscription_id" {
   type        = string
-  description = "Prefix name that should be used for the cluster and services. If not provided then resource_group_name will be used"
-  default     = ""
+  description = "Subscription Id"
 }
 
-variable "enabled" {}
+variable "client_id" {
+  type        = string
+  description = "Client Id"
+}
 
-variable "subscription_id" {}
+variable "client_secret" {
+  type        = string
+  description = "Client secret"
+}
 
-variable "client_id" {}
-
-variable "client_secret" {}
-
-variable "tenant_id" {}
+variable "tenant_id" {
+  type        = string
+  description = "Tenant Id"
+}
