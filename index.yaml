@@ -2,8 +2,79 @@ name: azure-storage-blob
 type: terraform
 description: Module to provision storage-blob on azure
 tags:
-  - tools
-  - devops
-versions: []
+  - azure
+  - storage
+versions:
+  - platforms: []
+    providers:
+      - name: azurerm
+        source: hashicorp/azurerm
+    dependencies:
+      - id: resource_group
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-azure-resource-group
+            version: '>= 1.0.0'
+      - id: sync
+        refs: []
+        interface: github.com/cloud-native-toolkit/automation-modules#sync
+        optional: true
+    variables:
+      - name: resource_group_name
+        type: string
+        description: >-
+          The name of the Azure resource group where the VPC has been
+          provisioned
+        moduleRef:
+          id: resource_group
+          output: name
+      - name: region
+        type: string
+        description: The Azure location where the load balancer will be installed
+        scope: global
+      - name: storage_account_name
+        type: string
+        description: The name of the Azure Storage Account
+      - name: storage_account_tier
+        type: string
+        description: The Tier of the Azure Storage Account
+        default: Standard
+      - name: replication_type
+        type: string
+        description: The type of the Replication for Azure Storage Account
+        default: LRS
+      - name: container_should_create
+        type: bool
+        description: Flag to indicate whether container should be created
+        default: false
+      - name: container_name
+        type: string
+        description: The name of the Azure Blob Storage Container
+        default: ''
+      - name: container_access_type
+        type: string
+        description: The type of access for Azure Storage Container
+        default: private
+      - name: blob_file_should_create
+        type: bool
+        description: Flag to indicate whether file should be created
+        default: false
+      - name: blob_file_name
+        type: string
+        description: The name of the Blob File
+        default: ''
+      - name: blob_file_type
+        type: string
+        description: The type of Blob for File
+        default: Block
+      - name: blob_file_sourcefile_name
+        type: string
+        description: The name of the Source file
+        default: ''
+    version: v1.0.0
+    outputs:
+      - name: storage_blob_id
+        description: The id of the Azure Storage Blob File
+      - name: storage_blob_url
+        description: The URL of the Azure Storage Blob File
 cloudProvider: azure
 id: github.com/cloud-native-toolkit/terraform-azure-storage-blob
