@@ -3,4 +3,5 @@ module "azure-storage-blob" {
   resource_group_name  = module.resource_group.name
   region               = var.region
   storage_account_name = "stgaccvalidate"
+  container_name       = "containervalidate"
 }
