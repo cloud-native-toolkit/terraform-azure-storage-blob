@@ -28,12 +28,6 @@ variable "replication_type" {
 }
 
 # Container
-variable "container_should_create" {
-  type        = bool
-  description = "Flag to indicate whether container should be created"
-  default     = false
-}
-
 variable "container_name" {
   type        = string
   description = "The name of the Azure Blob Storage Container"
@@ -47,12 +41,6 @@ variable "container_access_type" {
 }
 
 # BLOB File
-variable "blob_file_should_create" {
-  type        = bool
-  description = "Flag to indicate whether file should be created"
-  default     = false
-}
-
 variable "blob_file_name" {
   type        = string
   description = "The name of the Blob File"
